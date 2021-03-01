@@ -1,13 +1,61 @@
 {% extends 'base.html' %}
-{% block title %}Update Lead{% endblock title %}
-{% block content %}
-    <h1>Leads</h1><a href="{% url 'leads:lead_create' %}">Create Lead</a>
-    <ul>
-        {% for lead in leads %}
-        <li>
-            <a href="{% url 'leads:lead_detail' lead.id %}">{{lead}}</a>
-        </li>
-        {% endfor %}
-    </ul>
 
-{% endblock content%}
+{% block title %}Leads{% endblock title %}
+{% load gravatar %}
+{% block content %}
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <p class="is-size-6">Leads</p>
+      </div>
+      <div class="column">
+        <p class="has-text-right"><a class="is-size-6" href="{% url 'leads:lead_create' %}">Create Lead</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+      {% for lead in leads %}
+      <div class="column  is-one-third">
+
+        <div class="box">
+          <article class="media">
+            <div class="media-left">
+
+              {% gravatar user.email 100 %}
+
+
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>{{lead}}</strong>
+                  <br>
+
+
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a href="{% url 'leads:lead_detail' lead.id %}" class="btn btn-primary">View</a>
+                </div>
+              </nav>
+            </div>
+          </article>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+  {% endblock content%}

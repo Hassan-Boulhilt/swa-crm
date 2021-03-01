@@ -6,6 +6,7 @@
     <p>Full Name: {{lead}}</p>
     <p>Age: {{lead.age}}</p>
     <p>Agent: {{lead.agent}}</p>
+    <p>Agent: {{lead.email}}</p>
 
     <a href="{% url 'leads:lead_update' lead.id %}">Edit lead</a>
     <a href="{% url 'leads:lead_delete' lead.id %}">Delete lead</a>

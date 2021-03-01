@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'leads',
+    'django_gravatar',
+
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = "leads.User"
+
+# Gravatar base url. Defaults to 'http://www.gravatar.com/'
+GRAVATAR_URL = 'http://www.gravatar.com/'
+
+# Gravatar base secure https url. Defaults to 'https://secure.gravatar.com/'
+GRAVATAR_SECURE_URL = 'https://secure.gravatar.com/'
+
+GRAVATAR_DEFAULT_SIZE = '80'  # Gravatar size in pixels. Defaults to '80'
+
+# An image url or one of the following: 'mm', 'identicon', 'monsterid', 'wavatar', 'retro'. Defaults to 'mm'
+GRAVATAR_DEFAULT_IMAGE = 'identicon'
+
+# One of the following: 'g', 'pg', 'r', 'x'. Defaults to 'g'
+GRAVATAR_DEFAULT_RATING = 'g'
+
+# True to use https by default, False for plain http. Defaults to True
+GRAVATAR_DEFAULT_SECURE = 'False'
