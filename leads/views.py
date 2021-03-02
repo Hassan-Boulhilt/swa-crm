@@ -1,6 +1,51 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, reverse
 from .models import Agent, Lead
 from .forms import LeadForm, LeadModelForm
+from django.views import generic
+
+
+class LandingPageView(generic.TemplateView):
+    template_name = "landing.html"
+
+
+class LeadsListView(generic.ListView):
+    model = Lead
+    template_name = "leads/leads_list.html"
+    # queryset = Lead.objects.all()
+    context_object_name = "leads"
+
+
+class LeadDetailView(generic.DetailView):
+    model = Lead
+    template_name = "leads/lead_detail.html"
+    # queryset = Lead.objects.all()
+    context_object_name = "lead"
+
+
+class LeadCreateView(generic.CreateView):
+    model = Lead
+    template_name = "leads/lead_create.html"
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead_list")
+
+
+class LeadUpdateView(generic.UpdateView):
+    model = Lead
+    template_name = "leads/lead_update.html"
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead_list")
+
+
+class LeadDeleteView(generic.DeleteView):
+    model = Lead
+    template_name = "leads/lead_delete.html"
+
+    def get_success_url(self):
+        return reverse("leads:lead_list")
 
 
 def landing_page(request):
