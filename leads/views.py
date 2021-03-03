@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Agent, Lead, User
 from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
 from django.views import generic
