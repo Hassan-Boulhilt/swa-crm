@@ -5,7 +5,7 @@ from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
 from django.views import generic
 
 
-class SingupView(generic.CreateView):
+class SignupView(generic.CreateView):
 
     template_name = "registration/signup.html"
     form_class = CustomUserCreationForm

@@ -15,21 +15,17 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
-<<<<<<< HEAD
-=======
-from leads.views import LandingPageView, landing_page
->>>>>>> 979cf51432fea82ca735639af2c848e4847622f9
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path, include
-from leads.views import LandingPageView, SingupView, landing_page
+from leads.views import LandingPageView, SignupView, landing_page
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name='landing-page'),
     path('leads/', include('leads.urls', namespace='leads')),
-    path('singup/', SingupView.as_view(), name='signup-page'),
+    path('singup/', SignupView.as_view(), name='signup-page'),
     path('login/', LoginView.as_view(), name="login-page"),
     path('logout/', LogoutView.as_view(), name='logout-page'),
 

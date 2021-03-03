@@ -123,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
+
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -135,7 +135,7 @@ AUTH_USER_MODEL = "leads.User"
 LOGIN_REDIRECT_URL = "/leads"
 
 LOGOUT_REDIRECT_URL = "/leads"
-=======
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
@@ -144,7 +144,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = "static_root"
 AUTH_USER_MODEL = "leads.User"
 
->>>>>>> 979cf51432fea82ca735639af2c848e4847622f9
 
 # Gravatar base url. Defaults to 'http://www.gravatar.com/'
 GRAVATAR_URL = 'http://www.gravatar.com/'
