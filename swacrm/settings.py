@@ -123,7 +123,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+STATIC_ROOT = "static_root"
+
 AUTH_USER_MODEL = "leads.User"
+
+LOGIN_REDIRECT_URL = "/leads"
+
+LOGOUT_REDIRECT_URL = "/leads"
 
 # Gravatar base url. Defaults to 'http://www.gravatar.com/'
 GRAVATAR_URL = 'http://www.gravatar.com/'
@@ -141,3 +151,8 @@ GRAVATAR_DEFAULT_RATING = 'g'
 
 # True to use https by default, False for plain http. Defaults to True
 GRAVATAR_DEFAULT_SECURE = 'False'
+
+
+# email backend
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
