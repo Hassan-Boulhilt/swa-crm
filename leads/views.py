@@ -19,21 +19,21 @@ class LandingPageView(generic.TemplateView):
     template_name = "landing.html"
 
 
-class LeadsListView(generic.ListView):
+class LeadsListView(LoginRequiredMixin, generic.ListView):
     model = Lead
     template_name = "leads/leads_list.html"
     # queryset = Lead.objects.all()
     context_object_name = "leads"
 
 
-class LeadDetailView(generic.DetailView):
+class LeadDetailView(LoginRequiredMixin, generic.DetailView):
     model = Lead
     template_name = "leads/lead_detail.html"
     # queryset = Lead.objects.all()
     context_object_name = "lead"
 
 
-class LeadCreateView(generic.CreateView):
+class LeadCreateView(LoginRequiredMixin, generic.CreateView):
     model = Lead
     template_name = "leads/lead_create.html"
     form_class = LeadModelForm
@@ -53,7 +53,7 @@ class LeadCreateView(generic.CreateView):
         return super(LeadCreateView, self).form_valid(form)
 
 
-class LeadUpdateView(generic.UpdateView):
+class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Lead
     template_name = "leads/lead_update.html"
     form_class = LeadModelForm
@@ -62,7 +62,7 @@ class LeadUpdateView(generic.UpdateView):
         return reverse("leads:lead_list")
 
 
-class LeadDeleteView(generic.DeleteView):
+class LeadDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Lead
     template_name = "leads/lead_delete.html"
 

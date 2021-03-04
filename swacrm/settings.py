@@ -136,6 +136,8 @@ LOGIN_REDIRECT_URL = "/leads"
 
 LOGOUT_REDIRECT_URL = "/leads"
 
+LOGIN_URL = "/login"
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
