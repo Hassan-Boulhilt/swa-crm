@@ -1,8 +1,8 @@
 
 
-from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.db.models.signals import post_save, pre_save
+from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
@@ -30,7 +30,7 @@ class Lead(models.Model):
 class Agent(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    organisation = models.ForeignKey(UserProfile, on_delete=CASCADE)
+    organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.user.email
