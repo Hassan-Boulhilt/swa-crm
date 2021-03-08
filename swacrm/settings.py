@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'leads',
     'django_gravatar',
     'agents',
+    'tailwind',
+    'theme',
 
 ]
 
@@ -169,3 +171,6 @@ GRAVATAR_DEFAULT_SECURE = 'False'
 # email backend
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# register tailwind app
+TAILWIND_APP_NAME = 'theme'
