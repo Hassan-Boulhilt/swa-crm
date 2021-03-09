@@ -142,14 +142,6 @@ LOGOUT_REDIRECT_URL = "/leads"
 LOGIN_URL = "/login"
 
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-
-]
-STATIC_ROOT = "static_root"
-AUTH_USER_MODEL = "leads.User"
-
-
 # Gravatar base url. Defaults to 'http://www.gravatar.com/'
 GRAVATAR_URL = 'http://www.gravatar.com/'
 

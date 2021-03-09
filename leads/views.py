@@ -31,13 +31,26 @@ class LeadsListView(LoginRequiredMixin, generic.ListView):
         user = self.request.user
         # initial queryset for the entire organisation
         if user.is_organisor:
-            queryset = Lead.objects.filter(organisation=user.userprofile)
+            queryset = Lead.objects.filter(
+                organisation=user.userprofile, agent__isnull=False)
         else:
             queryset = Lead.objects.filter(
                 organisation=user.agent.organisation)
             # filter
             queryset = queryset.filter(agent__user=user)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super(LeadsListView, self).get_context_data(**kwargs)
+        if user.is_organisor:
+            queryset = Lead.objects.filter(
+                organisation=user.userprofile, agent__isnull=True)
+
+        context.update({
+            "unassigned_leads": queryset
+        })
+        return context
 
 
 class LeadDetailView(LoginRequiredMixin, generic.DetailView):
