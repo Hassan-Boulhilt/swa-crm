@@ -9,5 +9,6 @@ urlpatterns = [
     path('detail/<pk>', AgentDetailView.as_view(), name='agent-detail'),
     path('update/<pk>', AgentUpdateView.as_view(), name='agent-update'),
     path('delete/<pk>', AgentDeleteView.as_view(), name='agent-delete'),
-    path('create/', AgentCreateView.as_view(), name='agent-create')
+    path('create/', AgentCreateView.as_view(), name='agent-create'),
+
 ]

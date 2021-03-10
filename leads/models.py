@@ -45,6 +45,7 @@ class Agent(models.Model):
 class Category(models.Model):
     # New Contacted Converted Uncoverted
     name = models.CharField(max_length=30)
+    organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.name
