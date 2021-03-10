@@ -73,7 +73,7 @@ class LeadDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class LeadCreateView(OrganisorAndLoginRequiredMixin, generic.CreateView):
-    model = Lead
+
     template_name = "leads/lead_create.html"
     form_class = LeadModelForm
 
