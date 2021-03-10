@@ -26,6 +26,8 @@ class Lead(models.Model):
     agent = models.ForeignKey(
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
     email = models.EmailField(max_length=150)
+    category = models.ForeignKey(
+        "Category", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
@@ -38,6 +40,14 @@ class Agent(models.Model):
 
     def __str__(self) -> str:
         return self.user.email
+
+
+class Category(models.Model):
+    # New Contacted Converted Uncoverted
+    name = models.CharField(max_length=30)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 def post_user_created_signal(sender, instance, created, **kwargs):
