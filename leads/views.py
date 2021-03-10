@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Agent, Lead, User
-from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
+from .forms import AssignAgentForm, LeadForm, LeadModelForm, CustomUserCreationForm
 from django.views import generic
 from agents.mixins import OrganisorAndLoginRequiredMixin
 
@@ -47,9 +47,9 @@ class LeadsListView(LoginRequiredMixin, generic.ListView):
             queryset = Lead.objects.filter(
                 organisation=user.userprofile, agent__isnull=True)
 
-        context.update({
-            "unassigned_leads": queryset
-        })
+            context.update({
+                "unassigned_leads": queryset
+            })
         return context
 
 
@@ -118,6 +118,28 @@ class LeadDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
 
     def get_success_url(self):
         return reverse("leads:lead_list")
+
+
+class AssignAgentView(OrganisorAndLoginRequiredMixin, generic.FormView):
+    template_name = "leads/assign_agent.html"
+    form_class = AssignAgentForm
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(AssignAgentView, self).get_form_kwargs(**kwargs)
+        kwargs.update({
+            "request": self.request
+        })
+        return kwargs
+
+    def get_success_url(self):
+        return reverse("leads:lead_list")
+
+    def form_valid(self, form):
+        agent = form.cleaned_data["agent"]
+        lead = Lead.objects.get(id=self.kwargs["pk"])
+        lead.agent = agent
+        lead.save()
+        return super(AssignAgentView, self).form_valid(form)
 
 
 def landing_page(request):
