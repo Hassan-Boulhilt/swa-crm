@@ -148,11 +148,15 @@ class CategoryListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "category_list"
 
     def get_context_data(self, **kwargs):
+
         context = super(CategoryListView, self).get_context_data(**kwargs)
         user = self.request.user
+
+        # get all leads that belong to the organisor
         if user.is_organisor:
             queryset = Lead.objects.filter(organisation=user.userprofile)
         else:
+            # get leads that belong to a specifique agent
             queryset = Lead.objects.filter(
                 organisation=user.agent.organisation)
 
@@ -163,10 +167,11 @@ class CategoryListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         user = self.request.user
-        # initial queryset for the entire organisation
+        # get all leads categories belong to the organisor
         if user.is_organisor:
             queryset = Category.objects.filter(organisation=user.userprofile)
         else:
+            # get the leads categories belong to a specifique agent
             queryset = Category.objects.filter(
                 organisation=user.agent.organisation)
 
