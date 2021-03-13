@@ -27,7 +27,7 @@ class Lead(models.Model):
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
     email = models.EmailField(max_length=150)
     category = models.ForeignKey(
-        "Category", null=True, blank=True, on_delete=models.SET_NULL)
+        "Category", related_name="leads", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"

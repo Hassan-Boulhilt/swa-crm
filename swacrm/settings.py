@@ -37,11 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps
     'leads',
-    'django_gravatar',
     'agents',
+
+    # Third party apps
     'tailwind',
+    'django_gravatar',
     'theme',
+    'crispy_forms',
+    'crispy_tailwind',
 
 ]
 
@@ -166,3 +172,9 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # register tailwind app
 TAILWIND_APP_NAME = 'theme'
+
+
+# Grispy tailwind
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
