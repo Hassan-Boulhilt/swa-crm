@@ -22,9 +22,12 @@ class Lead(models.Model):
     last_name = models.CharField(max_length=20)
     age = models.IntegerField(default=0)
     organisation = models.ForeignKey(
-        UserProfile, default=1, on_delete=models.CASCADE)
+        UserProfile, on_delete=models.CASCADE)
     agent = models.ForeignKey(
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
+    description = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    phone_number = models.CharField(max_length=20)
     email = models.EmailField(max_length=150)
     category = models.ForeignKey(
         "Category", related_name="leads", null=True, blank=True, on_delete=models.SET_NULL)
