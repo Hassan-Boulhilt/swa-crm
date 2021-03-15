@@ -8,8 +8,8 @@ module.exports = {
         // Templates in other apps. Uncomment the following line if it matches
         // your project structure or change it to match.
         '../../templates/**/*.html',
-        '../../leads/templates/**/*.html',
         '../../agents/templates/**/*.html',
+        '../../leads/templates/**/*.html',
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {

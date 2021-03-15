@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Category, Lead
-from .forms import AssignAgentForm, LeadCategoryUpdateForm, LeadModelForm, CustomUserCreationForm
+from .forms import AssignAgentForm, CategoryModelForm, LeadCategoryUpdateForm, LeadModelForm, CustomUserCreationForm
 from django.views import generic
 from agents.mixins import OrganisorAndLoginRequiredMixin
 
@@ -232,6 +232,56 @@ class CategoryLeadUpdate(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse("leads:lead_detail", kwargs={"pk": self.get_object().id})
+
+
+class CategoryCreateView(OrganisorAndLoginRequiredMixin, generic.CreateView):
+
+    template_name = "leads/category_create.html"
+    form_class = CategoryModelForm
+
+    def get_success_url(self):
+        return reverse("agents:agent-list")
+
+
+class CategoryUpdateView(OrganisorAndLoginRequiredMixin, generic.UpdateView):
+
+    template_name = "leads/category_update.html"
+    form_class = CategoryModelForm
+
+    def get_success_url(self):
+        return reverse("leads:category-list")
+
+    def get_queryset(self):
+        user = self.request.user
+        # get all leads categories belong to the organisor
+        if user.is_organisor:
+            queryset = Category.objects.filter(organisation=user.userprofile)
+        else:
+            # get the leads categories belong to a specifique agent
+            queryset = Category.objects.filter(
+                organisation=user.agent.organisation)
+
+        return queryset
+
+
+class CategoryDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
+    template_name = "leads/category_delete.html"
+    form_class = CategoryModelForm
+
+    def get_success_url(self):
+        return reverse("leads:category-list")
+
+    def get_queryset(self):
+        user = self.request.user
+        # get all leads categories belong to the organisor
+        if user.is_organisor:
+            queryset = Category.objects.filter(organisation=user.userprofile)
+        else:
+            # get the leads categories belong to a specifique agent
+            queryset = Category.objects.filter(
+                organisation=user.agent.organisation)
+
+        return queryset
 
 
 def landing_page(request):
