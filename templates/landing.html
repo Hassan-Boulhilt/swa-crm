@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}SWA-CRM{% endblock title %}
 {% block content %}
 <section class="text-gray-600 body-font">
   <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
@@ -7,10 +8,12 @@
     <div class="text-center lg:w-2/3 w-full">
       <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">CRM built with Django</h1>
       <p class="mb-8 leading-relaxed">SWA CRM helps you manage easily and effeciently your custmers relationships.</p>
+      {% if not request.user.is_authenticated %}
       <div class="flex justify-center">
         <a href="{% url 'signup-page' %}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sing up for a free account</a>
         
       </div>
+      {% endif %}
     </div>
   </div>
 </section>
