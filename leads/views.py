@@ -240,7 +240,13 @@ class CategoryCreateView(OrganisorAndLoginRequiredMixin, generic.CreateView):
     form_class = CategoryModelForm
 
     def get_success_url(self):
-        return reverse("agents:agent-list")
+        return reverse("leads:category-list")
+
+    def form_valid(self, form):
+        category = form.save(commit=False)
+        category.organisation = self.request.user.userprofile
+        category.save()
+        return super(CategoryCreateView, self).form_valid(form)
 
 
 class CategoryUpdateView(OrganisorAndLoginRequiredMixin, generic.UpdateView):
