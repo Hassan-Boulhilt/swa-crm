@@ -16,3 +16,5 @@ six==1.15.0
 sqlparse==0.4.1
 toml==0.10.2
 whitenoise==5.2.0
+gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
+psycopg2==2.8.6  # https://github.com/psycopg/psycopg2
